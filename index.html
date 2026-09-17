@@ -2,253 +2,134 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#111522" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <title>Suscripto — Gestor de suscripciones</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=20260917-4" />
+  <link rel="stylesheet" href="styles.css?v=20260917-5" />
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
       <div class="brand">
-        <div class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M7 7.5A4.5 4.5 0 0 1 11.5 3H16a4 4 0 0 1 4 4v.5M17 16.5A4.5 4.5 0 0 1 12.5 21H8a4 4 0 0 1-4-4v-.5M8 12h8"/></svg>
-        </div>
-        <div class="brand-copy">
-          <strong>Suscripto</strong>
-          <span>Tu dinero, bajo control</span>
-        </div>
+        <div class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7.5A4.5 4.5 0 0 1 11.5 3H16a4 4 0 0 1 4 4v.5M17 16.5A4.5 4.5 0 0 1 12.5 21H8a4 4 0 0 1-4-4v-.5M8 12h8"/></svg></div>
+        <div><strong>Suscripto</strong><span>Tu dinero, bajo control</span></div>
       </div>
 
       <nav class="nav" aria-label="Navegación principal">
-        <button class="nav-item active" data-view="dashboard">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h13V10M9.5 19.5v-6h5v6"/></svg>
-          <span>Resumen</span>
+        <button class="nav-item active" data-view="dashboard" aria-label="Resumen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5M5.5 10v9.5h13V10M9.5 19.5v-6h5v6"/></svg><span>Resumen</span>
         </button>
-        <button class="nav-item" data-view="subscriptions">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 8h10M7 12h6M7 16h8"/></svg>
-          <span>Suscripciones</span>
+        <button class="nav-item" data-view="subscriptions" aria-label="Suscripciones">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M7 8h10M7 12h6M7 16h8"/></svg><span>Suscripciones</span>
         </button>
-        <button class="nav-item" data-view="calendar">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg>
-          <span>Calendario</span>
+        <button class="nav-item" data-view="calendar" aria-label="Calendario">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/></svg><span>Calendario</span>
         </button>
       </nav>
 
-      <div class="sidebar-spacer"></div>
-
       <div class="sidebar-card">
-        <span class="sidebar-card-icon" aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg>
-        </span>
+        <span class="sidebar-card-icon"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></span>
         <strong>Avisos de renovación</strong>
-        <p>Recibe recordatorios cuando abras la app y tengas un cobro cerca.</p>
+        <p>Recibe avisos mientras tengas Suscripto abierto.</p>
         <button id="notificationBtn" class="secondary-btn">Activar avisos</button>
       </div>
-
-      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Cambiar apariencia">
-        <span class="theme-icon">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.5A8 8 0 0 1 9.5 3.5 8.5 8.5 0 1 0 20.5 14.5Z"/></svg>
-        </span>
-        <span id="themeLabel">Modo oscuro</span>
-      </button>
     </aside>
 
     <main class="main-content">
       <header class="topbar">
-        <div>
-          <p class="eyebrow">GESTOR PERSONAL</p>
-          <h1 id="pageTitle">Tus suscripciones</h1>
-          <p id="pageSubtitle" class="page-subtitle">Todo lo que pagas, claro y en un solo sitio.</p>
+        <div><p class="eyebrow">GESTOR PERSONAL</p><h1 id="pageTitle">Tus suscripciones</h1></div>
+        <div class="topbar-actions">
+          <button id="themeBtn" class="round-btn" type="button" aria-label="Cambiar tema" title="Cambiar tema"><svg viewBox="0 0 24 24"><path d="M20.5 14.2A8 8 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg></button>
+          <button id="openModalBtn" class="primary-btn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Añadir suscripción</button>
         </div>
-        <button id="openModalBtn" class="primary-btn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-          Añadir suscripción
-        </button>
       </header>
 
       <section id="dashboardView" class="view active-view">
-        <div class="hero-card">
-          <div class="hero-main">
-            <div class="hero-kicker"><span class="pulse-dot"></span> GASTO MENSUAL ESTIMADO</div>
-            <div class="hero-value"><span id="monthlySpend">0,00 €</span><small>/ mes</small></div>
-            <div class="hero-meta"><span id="activeCount">0 suscripciones activas</span><span class="hero-separator">•</span><span id="currencyNote">Totales en EUR</span></div>
-          </div>
-          <div class="hero-side">
-            <div class="hero-side-item"><span>Previsión anual</span><strong id="yearlySpend">0,00 €</strong></div>
-            <div class="hero-side-item"><span>Ahorro si cancelas</span><strong id="potentialSavings">0,00 €</strong></div>
-          </div>
-        </div>
+        <section class="hero-card">
+          <div class="hero-main"><p><span class="hero-dot"></span> GASTO MENSUAL ESTIMADO</p><div class="hero-value"><span id="monthlySpend">0,00 €</span><small>/ mes</small></div><span class="hero-subtext"><b id="activeCount">0 suscripciones activas</b><i></i> Totales en EUR</span></div>
+          <div class="hero-side"><div><span>Previsión anual</span><strong id="yearlySpend">0,00 €</strong></div><div><span>Ahorro si cancelas</span><strong id="potentialSavings">0,00 €</strong></div></div>
+        </section>
 
         <div class="stats-grid">
-          <article class="stat-card">
-            <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M20 6v5h-5M4 18v-5h5M6.1 9A7 7 0 0 1 18 6l2 5M18 15a7 7 0 0 1-11.9 3L4 13"/></svg></div>
-            <div><span>Próximo cobro</span><strong id="nextChargeAmount">—</strong><small id="nextChargeName">Sin cobros próximos</small></div>
-          </article>
-          <article class="stat-card">
-            <div class="stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-            <div><span>Próximos 30 días</span><strong id="next30Spend">0,00 €</strong><small id="next30Count">0 renovaciones</small></div>
-          </article>
-          <article class="stat-card">
-            <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M3 17 9 11l4 4 8-9"/><path d="M15 6h6v6"/></svg></div>
-            <div><span>Próximo mes</span><strong id="nextMonthSpend">0,00 €</strong><small id="nextMonthCount">0 cobros previstos</small></div>
-          </article>
-          <article class="stat-card warning-stat">
-            <div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 3 2.7 20h18.6L12 3Z"/><path d="M12 9v5M12 17h.01"/></svg></div>
-            <div><span>Para cancelar</span><strong id="cancelCount">0</strong><small>Antes de su renovación</small></div>
-          </article>
+          <article class="stat-card"><div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M20 6v5h-5M4 18v-5h5M6.1 9A7 7 0 0 1 18 6l2 5M18 15a7 7 0 0 1-11.9 3L4 13"/></svg></div><div><span>Próximo cobro</span><strong id="nextChargeAmount">—</strong><small id="nextChargeName">Sin cobros próximos</small></div></article>
+          <article class="stat-card"><div class="stat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><span>Próximos 30 días</span><strong id="next30Spend">0,00 €</strong><small id="next30Count">0 renovaciones</small></div></article>
+          <article class="stat-card"><div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M4 17 9 12l3 3 7-8M14 7h5v5"/></svg></div><div><span>Próximo mes</span><strong id="nextMonthSpend">0,00 €</strong><small id="nextMonthCount">0 cobros previstos</small></div></article>
+          <article class="stat-card warning-stat"><div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 3 2.7 20h18.6L12 3Z"/><path d="M12 9v5M12 17h.01"/></svg></div><div><span>Para cancelar</span><strong id="cancelCount">0</strong><small>Antes de su renovación</small></div></article>
         </div>
 
-        <div class="analytics-grid">
+        <div class="dashboard-grid">
           <section class="panel donut-panel">
-            <div class="panel-header">
-              <div><p class="eyebrow">DISTRIBUCIÓN</p><h2>¿En qué se va tu dinero?</h2></div>
-              <span class="soft-badge">Por categoría</span>
-            </div>
-            <div class="donut-layout">
-              <div class="donut-wrap">
-                <div id="donutChart" class="donut-chart" role="img" aria-label="Distribución del gasto por categoría">
-                  <div class="donut-hole"><span>Al mes</span><strong id="donutTotal">0 €</strong></div>
-                </div>
-              </div>
-              <div id="categoryLegend" class="category-legend"></div>
-            </div>
+            <div class="panel-header"><div><p class="eyebrow">DISTRIBUCIÓN</p><h2>¿En qué se va tu dinero?</h2></div><span class="soft-badge">Por categoría</span></div>
+            <div class="donut-layout"><div class="donut" id="categoryDonut"><div class="donut-hole"><span>Al mes</span><strong id="donutTotal">0 €</strong></div></div><div id="categoryLegend" class="category-legend"></div></div>
           </section>
 
           <section class="panel forecast-panel">
-            <div class="panel-header">
-              <div><p class="eyebrow">PREVISIÓN</p><h2>Próximos 6 meses</h2></div>
-              <span class="soft-badge">Cobros previstos</span>
-            </div>
-            <div id="forecastChart" class="forecast-chart"></div>
+            <div class="panel-header"><div><p class="eyebrow">PREVISIÓN</p><h2>Próximos 6 meses</h2></div><span class="soft-badge">Cobros previstos</span></div>
+            <div id="forecastBars" class="forecast-bars"></div>
           </section>
         </div>
 
-        <div class="dashboard-bottom-grid">
-          <section class="panel calendar-preview-panel">
-            <div class="panel-header calendar-heading">
-              <div><p class="eyebrow">CALENDARIO</p><h2 id="dashboardMonthLabel">Este mes</h2></div>
-              <div class="calendar-controls">
-                <button class="icon-btn small-icon-btn" type="button" data-cal-nav="-1" aria-label="Mes anterior"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
-                <button class="today-btn" type="button" data-cal-today>Hoy</button>
-                <button class="icon-btn small-icon-btn" type="button" data-cal-nav="1" aria-label="Mes siguiente"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
-              </div>
-            </div>
-            <div id="dashboardCalendar" class="month-calendar compact-calendar"></div>
-            <button class="calendar-footer-link" type="button" data-view-target="calendar">Abrir calendario completo <span>→</span></button>
+        <div class="dashboard-grid lower-grid">
+          <section class="panel month-card">
+            <div class="panel-header"><div><p class="eyebrow">CALENDARIO</p><h2>Este mes</h2></div><button class="text-btn" data-view-target="calendar">Ver calendario →</button></div>
+            <div id="miniCalendar" class="mini-calendar"></div>
           </section>
-
           <section class="panel timeline-panel">
-            <div class="panel-header">
-              <div><p class="eyebrow">PRÓXIMOS COBROS</p><h2>Lo que viene ahora</h2></div>
-              <button class="text-btn" data-view-target="subscriptions">Gestionar</button>
-            </div>
-            <div id="upcomingTimeline" class="timeline"></div>
+            <div class="panel-header"><div><p class="eyebrow">PRÓXIMAMENTE</p><h2>Siguientes renovaciones</h2></div><button class="text-btn" data-view-target="subscriptions">Gestionar →</button></div>
+            <div id="upcomingList" class="upcoming-list"></div>
           </section>
         </div>
       </section>
 
       <section id="subscriptionsView" class="view">
-        <div class="subscriptions-summary" id="subscriptionsSummary"></div>
         <div class="toolbar">
-          <div class="search-wrap">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-            <input id="searchInput" type="search" placeholder="Buscar suscripción…" />
-          </div>
-          <select id="statusFilter" aria-label="Filtrar por estado">
-            <option value="all">Todas</option>
-            <option value="active">Activas</option>
-            <option value="cancel">Para cancelar</option>
-          </select>
-          <select id="categoryFilter" aria-label="Filtrar por categoría"><option value="all">Todas las categorías</option></select>
-          <select id="sortSelect" aria-label="Ordenar suscripciones">
-            <option value="renewal">Próxima renovación</option>
-            <option value="price-desc">Mayor precio</option>
-            <option value="price-asc">Menor precio</option>
-            <option value="name">Nombre A–Z</option>
-          </select>
-          <div class="view-toggle" aria-label="Cambiar forma de visualización">
-            <button type="button" class="view-mode active" data-mode="grid" aria-label="Vista de tarjetas" title="Tarjetas"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button>
-            <button type="button" class="view-mode" data-mode="list" aria-label="Vista de lista" title="Lista compacta"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></button>
-          </div>
+          <div class="search-wrap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="searchInput" type="search" placeholder="Buscar suscripción…" /></div>
+          <select id="statusFilter"><option value="all">Todas</option><option value="active">Activas</option><option value="cancel">Para cancelar</option></select>
+          <select id="categoryFilter"><option value="all">Todas las categorías</option></select>
+          <select id="sortSelect"><option value="date">Próxima renovación</option><option value="price-desc">Precio: mayor a menor</option><option value="price-asc">Precio: menor a mayor</option><option value="name">Nombre</option></select>
+          <div class="view-toggle"><button type="button" class="view-mode active" data-mode="grid" title="Tarjetas"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></button><button type="button" class="view-mode" data-mode="list" title="Lista"><svg viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></button></div>
         </div>
         <div id="subscriptionsGrid" class="subscriptions-grid"></div>
       </section>
 
       <section id="calendarView" class="view">
-        <div class="calendar-page-grid">
-          <section class="panel full-calendar-panel">
-            <div class="panel-header calendar-heading">
-              <div><p class="eyebrow">PLANIFICACIÓN</p><h2 id="calendarMonthLabel">Calendario</h2></div>
-              <div class="calendar-controls">
-                <button class="icon-btn small-icon-btn" type="button" data-cal-nav="-1" aria-label="Mes anterior"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
-                <button class="today-btn" type="button" data-cal-today>Hoy</button>
-                <button class="icon-btn small-icon-btn" type="button" data-cal-nav="1" aria-label="Mes siguiente"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
-              </div>
-            </div>
-            <div id="calendarGrid" class="month-calendar full-calendar"></div>
-          </section>
-
-          <aside class="calendar-side">
-            <section class="panel month-summary-panel">
-              <p class="eyebrow">RESUMEN DEL MES</p>
-              <div class="month-summary-value"><strong id="calendarMonthSpend">0,00 €</strong><span>en renovaciones</span></div>
-              <div class="month-summary-stats">
-                <div><strong id="calendarMonthCount">0</strong><span>Cobros</span></div>
-                <div><strong id="calendarMonthCancel">0</strong><span>Para cancelar</span></div>
-              </div>
-            </section>
-            <section class="panel day-detail-panel">
-              <div class="panel-header"><div><p class="eyebrow">DETALLE</p><h2 id="selectedDayTitle">Selecciona un día</h2></div></div>
-              <div id="selectedDayList" class="selected-day-list"><div class="empty-inline">Pulsa un día del calendario para ver sus cobros.</div></div>
-            </section>
-          </aside>
-        </div>
+        <section class="panel calendar-shell">
+          <div class="calendar-toolbar">
+            <div><p class="eyebrow">CALENDARIO DE COBROS</p><h2 id="calendarMonthTitle">Mes</h2></div>
+            <div class="calendar-actions"><button id="todayBtn" class="secondary-plain" type="button">Hoy</button><button id="prevMonthBtn" class="round-btn" type="button" aria-label="Mes anterior"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button><button id="nextMonthBtn" class="round-btn" type="button" aria-label="Mes siguiente"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button></div>
+          </div>
+          <div class="calendar-weekdays"><span>L</span><span>M</span><span>X</span><span>J</span><span>V</span><span>S</span><span>D</span></div>
+          <div id="monthGrid" class="month-grid"></div>
+          <div id="selectedDayPanel" class="selected-day-panel"></div>
+        </section>
       </section>
     </main>
   </div>
 
   <div id="modalBackdrop" class="modal-backdrop" hidden>
     <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-      <div class="modal-header">
-        <div><p class="eyebrow" id="modalEyebrow">NUEVA SUSCRIPCIÓN</p><h2 id="modalTitle">Añadir servicio</h2></div>
-        <button id="closeModalBtn" class="icon-btn" type="button" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
-      </div>
-
+      <div class="modal-header"><div><p class="eyebrow" id="modalEyebrow">NUEVA SUSCRIPCIÓN</p><h2 id="modalTitle">Añadir servicio</h2></div><button id="closeModalBtn" class="icon-btn" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
       <form id="subscriptionForm">
+        <input type="hidden" id="editingId" name="editingId" />
         <div class="form-grid">
-          <label class="field field-wide">Nombre del servicio<input id="name" name="name" required maxlength="80" placeholder="Ej. Netflix" /></label>
-
-          <div class="field field-wide">
-            <span>Icono del servicio <small class="optional">(automático o personalizado)</small></span>
-            <div class="icon-picker">
-              <div id="iconPreview" class="icon-preview" aria-hidden="true"><span>+</span></div>
-              <div class="icon-picker-copy">
-                <label for="iconFile" class="upload-btn"><svg viewBox="0 0 24 24"><path d="M12 16V4M8 8l4-4 4 4M5 14v5h14v-5"/></svg>Cargar imagen</label>
-                <input id="iconFile" type="file" accept="image/png,image/jpeg,image/webp" hidden />
-                <button id="removeIconBtn" type="button" class="remove-icon-btn" hidden>Usar automático</button>
-                <small>Reconocemos servicios conocidos automáticamente. También puedes subir tu propio icono.</small>
-              </div>
-            </div>
-          </div>
-
-          <label class="field">Precio<input id="price" name="price" type="number" min="0" max="999999" step="0.01" required placeholder="12.99" /></label>
-          <label class="field">Moneda<select id="currency" name="currency"><option value="EUR">EUR (€)</option><option value="USD">USD ($)</option><option value="GBP">GBP (£)</option></select></label>
+          <label class="field field-wide">Nombre del servicio<input id="name" name="name" required placeholder="Ej. Netflix" /></label>
+          <div class="field field-wide"><span>Icono del servicio <small class="optional">(opcional)</small></span><div class="icon-picker"><div id="iconPreview" class="icon-preview"><span>+</span></div><div class="icon-picker-copy"><label for="iconFile" class="upload-btn"><svg viewBox="0 0 24 24"><path d="M12 16V4M8 8l4-4 4 4M5 14v5h14v-5"/></svg>Cargar imagen</label><input id="iconFile" type="file" accept="image/png,image/jpeg,image/webp" hidden /><button id="removeIconBtn" type="button" class="remove-icon-btn" hidden>Quitar icono</button><small>Si reconocemos el servicio, el logo aparece automáticamente.</small></div></div></div>
+          <label class="field">Precio<input id="price" name="price" type="number" min="0" step="0.01" required /></label>
+          <label class="field">Moneda<select id="currency" name="currency"><option value="EUR">EUR (€)</option><option value="USD">USD ($)</option></select></label>
           <label class="field">Próxima renovación<input id="renewalDate" name="renewalDate" type="date" required /></label>
           <label class="field">Frecuencia<select id="frequency" name="frequency"><option value="monthly">Mensual</option><option value="quarterly">Cada 3 meses</option><option value="yearly">Anual</option><option value="one-time">Pago único</option></select></label>
-          <label class="field field-wide">Categoría<select id="category" name="category"><option>Entretenimiento</option><option>Software</option><option>Trabajo</option><option>Educación</option><option>Cloud</option><option>Salud</option><option>Finanzas</option><option>Otros</option></select></label>
+          <label class="field field-wide">Categoría<select id="category" name="category"><option>Entretenimiento</option><option>Software</option><option>Trabajo</option><option>Educación</option><option>Cloud</option><option>Salud</option><option>Otros</option></select></label>
         </div>
         <label class="toggle-row"><input id="cancelBeforeRenewal" name="cancelBeforeRenewal" type="checkbox" /><span>Quiero cancelarla antes de que se renueve</span></label>
-        <div class="modal-actions"><button type="button" id="cancelModalBtn" class="secondary-btn">Cancelar</button><button type="submit" class="primary-btn"><span id="saveButtonText">Guardar suscripción</span></button></div>
+        <div class="modal-actions"><button type="button" id="cancelModalBtn" class="secondary-btn">Cancelar</button><button type="submit" class="primary-btn" id="saveBtn">Guardar suscripción</button></div>
       </form>
     </div>
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=20260917-4"></script>
+  <script src="app.js?v=20260917-5"></script>
 </body>
 </html>
