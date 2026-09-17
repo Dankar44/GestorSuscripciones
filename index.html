@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <title>Suscripto — Gestor de suscripciones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">S</div>
+        <div>
+          <strong>Suscripto</strong>
+          <span>Tu dinero, bajo control</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-item active" data-view="dashboard">⌂ <span>Resumen</span></button>
+        <button class="nav-item" data-view="subscriptions">▣ <span>Suscripciones</span></button>
+        <button class="nav-item" data-view="calendar">◷ <span>Próximos cobros</span></button>
+      </nav>
+
+      <div class="sidebar-card">
+        <span class="sidebar-card-icon">🔔</span>
+        <strong>Avisos de renovación</strong>
+        <p>Activa los avisos del navegador para no llevarte sorpresas.</p>
+        <button id="notificationBtn" class="secondary-btn">Activar avisos</button>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">GESTOR PERSONAL</p>
+          <h1 id="pageTitle">Tus suscripciones</h1>
+        </div>
+        <button id="openModalBtn" class="primary-btn"><span>＋</span> Añadir suscripción</button>
+      </header>
+
+      <section id="dashboardView" class="view active-view">
+        <div class="hero-card">
+          <div>
+            <p>GASTO MENSUAL ESTIMADO</p>
+            <div class="hero-value"><span id="monthlySpend">0,00 €</span><small>/ mes</small></div>
+            <span class="hero-subtext" id="activeCount">0 suscripciones activas</span>
+          </div>
+          <div class="hero-yearly">
+            <span>Previsión anual</span>
+            <strong id="yearlySpend">0,00 €</strong>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+          <article class="stat-card">
+            <div class="stat-icon">↻</div>
+            <div><span>Próximo cobro</span><strong id="nextChargeAmount">—</strong><small id="nextChargeName">Sin cobros próximos</small></div>
+          </article>
+          <article class="stat-card">
+            <div class="stat-icon">◷</div>
+            <div><span>En los próximos 30 días</span><strong id="next30Spend">0,00 €</strong><small id="next30Count">0 renovaciones</small></div>
+          </article>
+          <article class="stat-card warning-stat">
+            <div class="stat-icon">!</div>
+            <div><span>Marcadas para cancelar</span><strong id="cancelCount">0</strong><small>Antes de su renovación</small></div>
+          </article>
+        </div>
+
+        <div class="content-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div><p class="eyebrow">CALENDARIO</p><h2>Próximas renovaciones</h2></div>
+              <button class="text-btn" data-view-target="calendar">Ver todas →</button>
+            </div>
+            <div id="upcomingList" class="upcoming-list"></div>
+          </section>
+
+          <section class="panel compact-panel">
+            <div class="panel-header"><div><p class="eyebrow">DISTRIBUCIÓN</p><h2>Gasto por categoría</h2></div></div>
+            <div id="categoryChart" class="category-chart"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="subscriptionsView" class="view">
+        <div class="toolbar">
+          <input id="searchInput" type="search" placeholder="Buscar suscripción…" />
+          <select id="statusFilter">
+            <option value="all">Todas</option>
+            <option value="active">Activas</option>
+            <option value="cancel">Para cancelar</option>
+          </select>
+        </div>
+        <div id="subscriptionsGrid" class="subscriptions-grid"></div>
+      </section>
+
+      <section id="calendarView" class="view">
+        <section class="panel calendar-panel">
+          <div class="panel-header"><div><p class="eyebrow">PRÓXIMOS 12 MESES</p><h2>Calendario de cobros</h2></div></div>
+          <div id="calendarList" class="calendar-list"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div><p class="eyebrow">NUEVA SUSCRIPCIÓN</p><h2 id="modalTitle">Añadir servicio</h2></div>
+        <button id="closeModalBtn" class="icon-btn" aria-label="Cerrar">×</button>
+      </div>
+
+      <form id="subscriptionForm">
+        <div class="form-grid">
+          <label class="field field-wide">Nombre del servicio<input id="name" name="name" required placeholder="Ej. Netflix" /></label>
+          <label class="field">Precio<input id="price" name="price" type="number" min="0" step="0.01" required placeholder="12.99" /></label>
+          <label class="field">Moneda<select id="currency" name="currency"><option value="EUR">EUR (€)</option><option value="USD">USD ($)</option></select></label>
+          <label class="field">Próxima renovación<input id="renewalDate" name="renewalDate" type="date" required /></label>
+          <label class="field">Frecuencia<select id="frequency" name="frequency"><option value="monthly">Mensual</option><option value="yearly">Anual</option><option value="quarterly">Cada 3 meses</option><option value="one-time">Pago único</option></select></label>
+          <label class="field field-wide">Categoría<select id="category" name="category"><option>Entretenimiento</option><option>Software</option><option>Trabajo</option><option>Educación</option><option>Cloud</option><option>Salud</option><option>Otros</option></select></label>
+        </div>
+        <label class="toggle-row"><input id="cancelBeforeRenewal" name="cancelBeforeRenewal" type="checkbox" /><span>Quiero cancelarla antes de que se renueve</span></label>
+        <div class="modal-actions"><button type="button" id="cancelModalBtn" class="secondary-btn">Cancelar</button><button type="submit" class="primary-btn">Guardar suscripción</button></div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
