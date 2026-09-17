@@ -10,7 +10,7 @@ const date=s=>new Intl.DateTimeFormat('es-ES',{day:'numeric',month:'short',year:
 const days=s=>Math.ceil((parse(s)-new Date(new Date().setHours(0,0,0,0)))/86400000);
 const monthly=s=>s.frequency==='monthly'?s.price:s.frequency==='quarterly'?s.price/3:s.frequency==='yearly'?s.price/12:0;
 const freq=f=>({monthly:'Mensual',quarterly:'Cada 3 meses',yearly:'Anual','one-time':'Pago único'})[f]||f;
-const esc=v=>String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const esc=v=>String(v).replace(/[&<>'\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[c]));
 const initials=n=>n.trim().split(/\s+/).filter(Boolean).slice(0,2).map(x=>x[0]).join('').toUpperCase()||'S';
 
 const icons={
@@ -18,6 +18,28 @@ const icons={
  flag:`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4M5 5h10l-1 4 3 3H5"/></svg>`,
  trash:`<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6M14 11v6"/></svg>`
 };
+
+const knownServices=[
+ {terms:['chatgpt','openai'],domain:'chatgpt.com'},
+ {terms:['spotify'],domain:'spotify.com'},
+ {terms:['adobe','creative cloud'],domain:'adobe.com'},
+ {terms:['icloud','apple one','apple music','apple tv'],domain:'icloud.com'},
+ {terms:['netflix'],domain:'netflix.com'},
+ {terms:['youtube','youtube premium'],domain:'youtube.com'},
+ {terms:['disney','disney+'],domain:'disneyplus.com'},
+ {terms:['prime video','amazon prime'],domain:'primevideo.com'},
+ {terms:['microsoft','office 365','microsoft 365','onedrive'],domain:'microsoft.com'},
+ {terms:['github'],domain:'github.com'},
+ {terms:['notion'],domain:'notion.so'},
+ {terms:['canva'],domain:'canva.com'},
+ {terms:['dropbox'],domain:'dropbox.com'},
+ {terms:['figma'],domain:'figma.com'},
+ {terms:['claude','anthropic'],domain:'claude.ai'},
+ {terms:['perplexity'],domain:'perplexity.ai'},
+ {terms:['midjourney'],domain:'midjourney.com'},
+ {terms:['vercel'],domain:'vercel.com'},
+ {terms:['google one','google drive','gemini'],domain:'google.com'}
+];
 
 const demo=[
 {id:uid(),name:'ChatGPT Plus',price:23,currency:'EUR',renewalDate:addDays(4),frequency:'monthly',category:'Software',cancelBeforeRenewal:false},
@@ -36,7 +58,21 @@ const save=()=>localStorage.setItem(KEY,JSON.stringify(items));
 const empty=t=>`<div class="empty-state">${esc(t)}</div>`;
 const relative=s=>{const d=days(s);return d===0?'hoy':d===1?'mañana':d>1?`en ${d} días`:'fecha pasada'};
 const safeLogo=logo=>typeof logo==='string'&&/^data:image\/(?:png|jpeg|webp);base64,/i.test(logo)?logo:'';
-const logoHtml=x=>{const logo=safeLogo(x.logo);return logo?`<div class="service-logo has-image"><img src="${esc(logo)}" alt="Logo de ${esc(x.name)}"></div>`:`<div class="service-logo"><span>${esc(initials(x.name))}</span></div>`};
+const autoLogo=name=>{
+ const normalized=String(name||'').toLowerCase();
+ const match=knownServices.find(service=>service.terms.some(term=>normalized.includes(term)));
+ return match?`https://www.google.com/s2/favicons?domain=${encodeURIComponent(match.domain)}&sz=128`:'';
+};
+const logoHtml=(x,editable=false)=>{
+ const custom=safeLogo(x.logo);
+ const auto=autoLogo(x.name);
+ const src=custom||auto;
+ const tag=editable?'button':'div';
+ const attrs=editable?` type="button" data-icon="${esc(x.id)}" title="Cambiar icono" aria-label="Cambiar icono de ${esc(x.name)}"`:'';
+ return src
+   ?`<${tag} class="service-logo has-image"${attrs}><img src="${esc(src)}" alt="Logo de ${esc(x.name)}" referrerpolicy="no-referrer"></${tag}>`
+   :`<${tag} class="service-logo"${attrs}><span>${esc(initials(x.name))}</span></${tag}>`;
+};
 
 function renderDashboard(){
  const recurring=items.filter(x=>x.frequency!=='one-time');
@@ -64,7 +100,7 @@ function renderSubscriptions(){
  const f=$('#statusFilter').value;
  const list=items.filter(x=>x.name.toLowerCase().includes(q)&&(f==='all'||(f==='cancel'&&x.cancelBeforeRenewal)||(f==='active'&&!x.cancelBeforeRenewal)));
  $('#subscriptionsGrid').innerHTML=list.map(x=>`<article class="subscription-card">
-   <div class="subscription-top">${logoHtml(x)}<span class="badge ${x.cancelBeforeRenewal?'badge-danger':''}">${x.cancelBeforeRenewal?'Cancelar antes':'Activa'}</span></div>
+   <div class="subscription-top">${logoHtml(x,true)}<span class="badge ${x.cancelBeforeRenewal?'badge-danger':''}">${x.cancelBeforeRenewal?'Cancelar antes':'Activa'}</span></div>
    <div class="subscription-copy"><h3>${esc(x.name)}</h3><p>${esc(x.category)} · ${freq(x.frequency)}</p></div>
    <div class="subscription-price">${money(x.price,x.currency)}</div>
    <p class="renewal-copy">Próximo cobro: ${date(x.renewalDate)} · ${relative(x.renewalDate)}</p>
@@ -172,7 +208,8 @@ $('#removeIconBtn').onclick=()=>{pendingIcon='';$('#iconFile').value='';setIconP
 $('#name').addEventListener('input',()=>{
  if(pendingIcon)return;
  const value=$('#name').value.trim();
- $('#iconPreview').innerHTML=`<span>${esc(value?initials(value):'+')}</span>`;
+ const auto=value?autoLogo(value):'';
+ $('#iconPreview').innerHTML=auto?`<img src="${esc(auto)}" alt="Logo detectado automáticamente" referrerpolicy="no-referrer">`:`<span>${esc(value?initials(value):'+')}</span>`;
 });
 
 document.querySelectorAll('.view-mode').forEach(btn=>btn.addEventListener('click',()=>{
