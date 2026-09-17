@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260917-6" />
-  <link rel="stylesheet" href="mobile-nav.css?v=20260917-1" />
+  <link rel="stylesheet" href="mobile-nav.css?v=20260917-2" />
 </head>
 <body>
   <div class="app-shell">
@@ -67,6 +67,19 @@
           <article class="stat-card warning-stat"><div class="stat-icon"><svg viewBox="0 0 24 24"><path d="M12 3 2.7 20h18.6L12 3Z"/><path d="M12 9v5M12 17h.01"/></svg></div><div><span>Para cancelar</span><strong id="cancelCount">0</strong><small>Antes de su renovación</small></div></article>
         </div>
 
+        <section class="panel timeline-panel renewals-featured">
+          <div class="panel-header">
+            <div><p class="eyebrow">PRÓXIMAMENTE</p><h2>Próximas renovaciones</h2></div>
+            <div class="renewal-header-actions">
+              <span id="renewalRange" class="renewal-range"></span>
+              <button id="renewalPrev" class="mini-arrow" type="button" aria-label="Renovaciones anteriores"><svg viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg></button>
+              <button id="renewalNext" class="mini-arrow" type="button" aria-label="Más renovaciones"><svg viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></svg></button>
+              <button id="renewalSeeAll" class="text-btn renewal-see-all" type="button">Ver todas →</button>
+            </div>
+          </div>
+          <div id="upcomingList" class="upcoming-list"></div>
+        </section>
+
         <div class="dashboard-grid">
           <section class="panel donut-panel">
             <div class="panel-header"><div><p class="eyebrow">DISTRIBUCIÓN</p><h2>¿En qué se va tu dinero?</h2></div><span class="soft-badge">Por categoría</span></div>
@@ -83,10 +96,6 @@
           <section class="panel month-card">
             <div class="panel-header"><div><p class="eyebrow">CALENDARIO</p><h2>Este mes</h2></div><button class="text-btn" data-view-target="calendar">Ver calendario →</button></div>
             <div id="miniCalendar" class="mini-calendar"></div>
-          </section>
-          <section class="panel timeline-panel">
-            <div class="panel-header"><div><p class="eyebrow">PRÓXIMAMENTE</p><h2>Siguientes renovaciones</h2></div><button class="text-btn" data-view-target="subscriptions">Gestionar →</button></div>
-            <div id="upcomingList" class="upcoming-list"></div>
           </section>
         </div>
       </section>
@@ -155,6 +164,6 @@
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script src="app.js?v=20260917-6"></script>
-  <script src="mobile-nav.js?v=20260917-1"></script>
+  <script src="mobile-nav.js?v=20260917-2"></script>
 </body>
 </html>
