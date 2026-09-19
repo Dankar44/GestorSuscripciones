@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v9-safearea';
+const CACHE = 'suscripto-v10-margin';
 const ASSETS = [
   './',
   './index.html',
