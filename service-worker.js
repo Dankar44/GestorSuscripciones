@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v2-supabase';
+const CACHE = 'suscripto-v3-auth';
 const ASSETS = [
   './',
   './index.html',
@@ -9,6 +9,7 @@ const ASSETS = [
   './auth.css',
   './auth.js',
   './supabase.js',
+  './sw-register.js',
   './manifest.json'
 ];
 
