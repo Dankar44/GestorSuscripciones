@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v5-account-menu';
+const CACHE = 'suscripto-v6-network-first';
 const ASSETS = [
   './',
   './index.html',
@@ -19,18 +19,49 @@ self.addEventListener('install', e => {
 
 self.addEventListener('activate', e => {
   e.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
       .then(() => self.clients.claim())
+      .then(() => self.clients.matchAll({ type: 'window' }))
+      .then(clients => clients.forEach(c => c.navigate(c.url)))
   );
 });
 
+self.addEventListener('message', e => {
+  if (e.data === 'skipWaiting') self.skipWaiting();
+});
+
+// Network-first for HTML, JS, CSS and the manifest so updates always reach the user.
+// Cache-first for images/fonts and anything else (offline-friendly).
 self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin !== location.origin) return;
+
+  const isFresh = req.mode === 'navigate'
+    || req.destination === 'document'
+    || req.destination === 'script'
+    || req.destination === 'style'
+    || req.destination === 'manifest';
+
+  if (isFresh) {
+    e.respondWith(
+      fetch(req).then(res => {
+        if (res.ok) {
+          const copy = res.clone();
+          caches.open(CACHE).then(c => c.put(req, copy));
+        }
+        return res;
+      }).catch(() => caches.match(req).then(hit => hit || caches.match('./index.html')))
+    );
+    return;
+  }
+
   e.respondWith(
     caches.match(req).then(hit => hit || fetch(req).then(res => {
-      const copy = res.clone();
-      if (res.ok && new URL(req.url).origin === location.origin) {
+      if (res.ok) {
+        const copy = res.clone();
         caches.open(CACHE).then(c => c.put(req, copy));
       }
       return res;
