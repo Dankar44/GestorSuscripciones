@@ -178,9 +178,8 @@
         <div><strong>Suscripto</strong><span>Tu dinero, bajo control</span></div>
       </div>
 
-      <div id="authTabs" class="auth-tabs" role="tablist">
+      <div id="authTabs" class="auth-tabs" role="tablist" hidden>
         <button class="auth-tab active" type="button" data-tab="login" role="tab">Entrar</button>
-        <button class="auth-tab" type="button" data-tab="signup" role="tab">Crear cuenta</button>
       </div>
 
       <section id="panelLogin" class="auth-panel">
@@ -195,17 +194,7 @@
         </div>
       </section>
 
-      <section id="panelSignup" class="auth-panel" hidden>
-        <form id="signupForm" autocomplete="on" novalidate>
-          <label class="field field-wide">Email<input id="signupEmail" type="email" required autocomplete="username" placeholder="tu@email.com" /></label>
-          <label class="field field-wide">Contraseña<input id="signupPassword" type="password" required autocomplete="new-password" minlength="12" /></label>
-          <label class="field field-wide">Repite la contraseña<input id="signupPassword2" type="password" required autocomplete="new-password" minlength="12" /></label>
-          <p class="auth-hint">Mínimo 12 caracteres, con mayúsculas, minúsculas, números y símbolos.</p>
-          <button id="signupSubmit" type="submit" class="primary-btn auth-submit">Crear cuenta</button>
-        </form>
-      </section>
-
-      <section id="panelRecovery" class="auth-panel" hidden>
+<section id="panelRecovery" class="auth-panel" hidden>
         <form id="recoveryForm" autocomplete="on" novalidate>
           <label class="field field-wide">Email de la cuenta<input id="recoveryEmail" type="email" required autocomplete="username" placeholder="tu@email.com" /></label>
           <p class="auth-hint">Te enviaremos un enlace para elegir una contraseña nueva.</p>
@@ -230,7 +219,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase.js?v=20260919-2"></script>
-  <script src="auth.js?v=20260919-2"></script>
+  <script src="auth.js?v=20260919-3"></script>
   <script src="app.js?v=20260919-supabase1"></script>
   <script src="mobile-nav.js?v=20260917-2"></script>
   <script src="sw-register.js?v=20260919-1"></script>
