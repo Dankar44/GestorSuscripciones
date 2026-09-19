@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v7-wallet-icon';
+const CACHE = 'suscripto-v8-wallet-fit';
 const ASSETS = [
   './',
   './index.html',
