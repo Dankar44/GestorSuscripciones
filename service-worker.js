@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v6-network-first';
+const CACHE = 'suscripto-v7-wallet-icon';
 const ASSETS = [
   './',
   './index.html',
@@ -10,7 +10,13 @@ const ASSETS = [
   './auth.js',
   './supabase.js',
   './sw-register.js',
-  './manifest.json'
+  './manifest.json',
+  './icon-wallet.svg',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-512-maskable.png',
+  './apple-touch-icon.png',
+  './favicon.png'
 ];
 
 self.addEventListener('install', e => {
