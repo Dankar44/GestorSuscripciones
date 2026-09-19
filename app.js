@@ -35,7 +35,8 @@ const services=[
  {terms:['twitch'],icon:'twitch',color:'9146FF'},{terms:['xbox'],icon:'xbox',color:'107C10'},{terms:['playstation'],icon:'playstation',color:'003791'},{terms:['linkedin'],icon:'linkedin',color:'0A66C2'}
 ];
 const findService=name=>{const n=String(name||'').toLowerCase();return services.find(s=>s.terms.some(t=>n.includes(t)))};
-const brandUrl=(s,backup=false)=>backup?`https://api.iconify.design/simple-icons/${s.icon}.svg?color=%23${s.color}`:`https://cdn.simpleicons.org/${s.icon}/${s.color}`;
+const localBrandLogos={openai:'./assets/logos/chatgpt.svg',anthropic:'./assets/logos/claude.svg'};
+const brandUrl=(s,backup=false)=>localBrandLogos[s.icon]||(backup?`https://api.iconify.design/simple-icons/${s.icon}.svg?color=%23${s.color}`:`https://cdn.simpleicons.org/${s.icon}/${s.color}`);
 const safeLogo=logo=>typeof logo==='string'&&/^data:image\/(?:png|jpeg|webp);base64,/i.test(logo)?logo:'';
 function logoHtml(item,editable=false,size='normal'){
  const custom=safeLogo(item.logo),service=findService(item.name),tag=editable?'button':'div';

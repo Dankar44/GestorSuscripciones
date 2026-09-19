@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v12-scrolltop';
+const CACHE = 'suscripto-v13-local-logos';
 const ASSETS = [
   './',
   './index.html',
@@ -17,7 +17,9 @@ const ASSETS = [
   './icon-512.png',
   './icon-512-maskable.png',
   './apple-touch-icon.png',
-  './favicon.png'
+  './favicon.png',
+  './assets/logos/chatgpt.svg',
+  './assets/logos/claude.svg'
 ];
 
 self.addEventListener('install', e => {
