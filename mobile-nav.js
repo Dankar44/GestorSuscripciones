@@ -104,12 +104,8 @@
       <div id="accountMenu" class="account-menu" hidden>
         <div class="account-menu-head">
           <div class="account-avatar"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg></div>
-          <div><strong>Tu cuenta</strong><span>Suscripto</span></div>
+          <div><strong>Tu cuenta</strong><span id="accountEmail">—</span></div>
         </div>
-        <button type="button" class="account-menu-item" data-account-action="account">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></svg>
-          <span><strong>Mi cuenta</strong><small>Preferencias y datos</small></span>
-        </button>
         <button type="button" class="account-menu-item" data-account-action="theme">
           <svg viewBox="0 0 24 24"><path d="M20.5 14.2A8 8 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg>
           <span><strong>Cambiar tema</strong><small>Claro / oscuro</small></span>
@@ -131,13 +127,22 @@
       accountBtn.setAttribute('aria-expanded',String(!accountMenu.hidden));
     });
     document.addEventListener('click',e=>{if(!accountWrap.contains(e.target))closeAccount()});
-    accountMenu.addEventListener('click',e=>{
+    accountMenu.addEventListener('click',async e=>{
       const action=e.target.closest('[data-account-action]')?.dataset.accountAction;
       if(!action)return;
       if(action==='theme')themeBtn?.click();
-      if(action==='account')showToast(`${items?.length||0} suscripciones · datos guardados en este dispositivo`);
-      if(action==='logout')showToast('El inicio de sesión todavía no está conectado');
+      if(action==='logout'){
+        try{await window.db?.signOut();showToast('Sesión cerrada')}
+        catch(err){showToast('No se pudo cerrar sesión: '+(err?.message||err))}
+      }
       closeAccount();
     });
+
+    const emailEl=accountMenu.querySelector('#accountEmail');
+    const setEmail=u=>{if(emailEl)emailEl.textContent=u?.email||'Sin sesión'};
+    if(window.db){
+      window.db.currentUser().then(setEmail).catch(()=>{});
+      window.db.onAuthChange(u=>setEmail(u));
+    }
   }
 })();

@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v4-hidden-fix';
+const CACHE = 'suscripto-v5-account-menu';
 const ASSETS = [
   './',
   './index.html',

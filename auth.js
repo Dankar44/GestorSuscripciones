@@ -4,15 +4,11 @@
  const panels={login:document.getElementById('panelLogin'),signup:document.getElementById('panelSignup'),recovery:document.getElementById('panelRecovery')};
  const forms={login:document.getElementById('loginForm'),signup:document.getElementById('signupForm'),recovery:document.getElementById('recoveryForm'),reset:document.getElementById('resetForm')};
  const msg=document.getElementById('authMsg');
- const userChip=document.getElementById('userChip');
- const userEmailEl=document.getElementById('userEmail');
- const signOutBtn=document.getElementById('signOutBtn');
  const forgotBtn=document.getElementById('forgotBtn');
  const magicBtn=document.getElementById('magicLinkBtn');
 
  const setMsg=(text='',kind='')=>{msg.textContent=text;msg.className='auth-msg'+(kind?' '+kind:'')};
  const showOverlay=v=>{overlay.hidden=!v;document.body.style.overflow=v?'hidden':''};
- const showUser=u=>{if(!userChip)return;if(u){userChip.hidden=false;userEmailEl.textContent=u.email||''}else{userChip.hidden=true;userEmailEl.textContent=''}};
 
  function showTab(name){
   Object.entries(panels).forEach(([k,el])=>{if(el)el.hidden=k!==name});
@@ -90,13 +86,10 @@
   return /[a-z]/.test(pw)&&/[A-Z]/.test(pw)&&/\d/.test(pw)&&/[^A-Za-z0-9]/.test(pw);
  }
 
- signOutBtn?.addEventListener('click',async()=>{await window.db.signOut()});
-
  // Recovery-flow detection: user clicked reset link
  const isRecoveryFlow=()=>{const u=new URL(location.href);return u.searchParams.get('flow')==='recovery'||u.hash.includes('type=recovery')};
 
  window.db.onAuthChange((user,event)=>{
-  showUser(user);
   if(event==='PASSWORD_RECOVERY'||isRecoveryFlow()){
    showResetPanel();
    return;
@@ -117,7 +110,6 @@
 
  (async()=>{
   const u=await window.db.currentUser();
-  showUser(u);
   if(isRecoveryFlow()){showResetPanel();return}
   showOverlay(!u);
   if(window.__onAuthUser)window.__onAuthUser(u);
