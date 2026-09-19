@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v10-margin';
+const CACHE = 'suscripto-v11-fat-icon';
 const ASSETS = [
   './',
   './index.html',
