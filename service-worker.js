@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v1';
+const CACHE = 'suscripto-v2-supabase';
 const ASSETS = [
   './',
   './index.html',
@@ -6,6 +6,9 @@ const ASSETS = [
   './app.js',
   './mobile-nav.css',
   './mobile-nav.js',
+  './auth.css',
+  './auth.js',
+  './supabase.js',
   './manifest.json'
 ];
 

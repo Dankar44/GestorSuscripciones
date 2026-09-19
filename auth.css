@@ -1,0 +1,21 @@
+.auth-overlay{position:fixed;inset:0;z-index:200;background:rgba(17,21,34,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:24px;padding-top:max(24px,env(safe-area-inset-top));padding-bottom:max(24px,env(safe-area-inset-bottom))}
+.auth-card{background:var(--panel,#fff);color:var(--text,#111522);width:100%;max-width:420px;border-radius:24px;padding:32px 28px;box-shadow:0 30px 80px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:16px}
+[data-theme="dark"] .auth-card{background:#1a1f2e;color:#f4f6fb}
+.auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.auth-brand-mark{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#7b5cff,#4f2fff);display:flex;align-items:center;justify-content:center;color:#fff}
+.auth-brand-mark svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.auth-brand strong{display:block;font-size:16px;font-weight:700}
+.auth-brand span{display:block;font-size:12px;opacity:.65}
+.auth-card h2{margin:0;font-size:22px;font-weight:700}
+.auth-copy{margin:0;opacity:.7;font-size:14px;line-height:1.5}
+.auth-card form{display:flex;flex-direction:column;gap:14px;margin-top:4px}
+.auth-submit{width:100%;justify-content:center}
+.auth-msg{margin:0;font-size:13px;min-height:18px;line-height:1.4}
+.auth-msg.ok{color:#1a9a5a}
+.auth-msg.err{color:#d34848}
+.user-chip{display:inline-flex;align-items:center;gap:10px;padding:6px 10px 6px 12px;border-radius:999px;background:rgba(120,120,140,.12);font-size:13px;max-width:280px}
+.user-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:180px}
+.user-chip .text-btn{padding:2px 8px;border-radius:999px;background:rgba(0,0,0,.06);font-weight:600}
+[data-theme="dark"] .user-chip{background:rgba(255,255,255,.08)}
+[data-theme="dark"] .user-chip .text-btn{background:rgba(255,255,255,.1)}
+@media(max-width:640px){.user-chip span{max-width:120px}}

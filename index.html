@@ -15,6 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260918-apple15" />
   <link rel="stylesheet" href="mobile-nav.css?v=20260917-2" />
+  <link rel="stylesheet" href="auth.css?v=20260919-1" />
 </head>
 <body>
   <div class="app-shell">
@@ -54,6 +55,7 @@
       <header class="topbar">
         <div><p class="eyebrow">GESTOR PERSONAL</p><h1 id="pageTitle">Tus suscripciones</h1></div>
         <div class="topbar-actions">
+          <div id="userChip" class="user-chip" hidden><span id="userEmail"></span><button id="signOutBtn" class="text-btn" type="button" title="Cerrar sesión">Salir</button></div>
           <button id="themeBtn" class="round-btn" type="button" aria-label="Cambiar tema" title="Cambiar tema"><svg viewBox="0 0 24 24"><path d="M20.5 14.2A8 8 0 0 1 9.8 3.5 8.5 8.5 0 1 0 20.5 14.2Z"/></svg></button>
           <button id="openModalBtn" class="primary-btn"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Añadir suscripción</button>
         </div>
@@ -168,7 +170,27 @@
   </div>
 
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  <script src="app.js?v=20260918-apple3"></script>
+
+  <div id="authOverlay" class="auth-overlay" hidden>
+    <div class="auth-card">
+      <div class="auth-brand">
+        <div class="auth-brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 7.5A4.5 4.5 0 0 1 11.5 3H16a4 4 0 0 1 4 4v.5M17 16.5A4.5 4.5 0 0 1 12.5 21H8a4 4 0 0 1-4-4v-.5M8 12h8"/></svg></div>
+        <div><strong>Suscripto</strong><span>Tu dinero, bajo control</span></div>
+      </div>
+      <h2>Inicia sesión</h2>
+      <p class="auth-copy">Introduce tu email y te enviamos un enlace para entrar. Sin contraseñas.</p>
+      <form id="authForm">
+        <label class="field field-wide">Email<input id="authEmail" type="email" required autocomplete="email" placeholder="tu@email.com" /></label>
+        <button id="authSubmit" type="submit" class="primary-btn auth-submit">Enviar enlace</button>
+      </form>
+      <p id="authMsg" class="auth-msg"></p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase.js?v=20260919-1"></script>
+  <script src="auth.js?v=20260919-1"></script>
+  <script src="app.js?v=20260919-supabase1"></script>
   <script src="mobile-nav.js?v=20260917-2"></script>
   <script>if('serviceWorker' in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('service-worker.js').catch(()=>{}));</script>
 </body>
