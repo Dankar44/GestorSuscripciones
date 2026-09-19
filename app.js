@@ -1,3 +1,8 @@
+if('scrollRestoration' in history)history.scrollRestoration='manual';
+const scrollAppTop=()=>window.scrollTo(0,0);
+scrollAppTop();
+window.addEventListener('pageshow',scrollAppTop);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)scrollAppTop()});
 const KEY='suscripto-v1',LAYOUT_KEY='suscripto-layout',THEME_KEY='suscripto-theme';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const uid=()=>(crypto.randomUUID?crypto.randomUUID():Date.now().toString(36)+Math.random().toString(36).slice(2));
