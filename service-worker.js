@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v3-auth';
+const CACHE = 'suscripto-v4-hidden-fix';
 const ASSETS = [
   './',
   './index.html',
