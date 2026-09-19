@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css?v=20260918-apple15" />
   <link rel="stylesheet" href="mobile-nav.css?v=20260917-2" />
-  <link rel="stylesheet" href="auth.css?v=20260919-4" />
+  <link rel="stylesheet" href="auth.css?v=20260919-5" />
 </head>
 <body>
   <div class="app-shell">
@@ -177,14 +177,18 @@
         <div><strong>Suscripto</strong><span>Tu dinero, bajo control</span></div>
       </div>
 
-      <div id="authTabs" class="auth-tabs" role="tablist" hidden>
-        <button class="auth-tab active" type="button" data-tab="login" role="tab">Entrar</button>
-      </div>
-
       <section id="panelLogin" class="auth-panel">
         <form id="loginForm" autocomplete="on" novalidate>
           <label class="field field-wide">Email<input id="loginEmail" type="email" required autocomplete="username" placeholder="tu@email.com" /></label>
-          <label class="field field-wide">Contraseña<input id="loginPassword" type="password" required autocomplete="current-password" minlength="12" /></label>
+          <label class="field field-wide">Contraseña
+            <div class="password-wrap">
+              <input id="loginPassword" type="password" required autocomplete="current-password" minlength="11" />
+              <button type="button" class="pw-toggle" data-pw-target="loginPassword" aria-label="Mostrar contraseña">
+                <svg class="pw-eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="pw-eye-off" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a19.4 19.4 0 0 1 4.06-5.06M9.9 4.24A10.8 10.8 0 0 1 12 4c7 0 11 7 11 7a19.7 19.7 0 0 1-2.16 3.19M14.12 14.12A3 3 0 1 1 9.88 9.88M1 1l22 22"/></svg>
+              </button>
+            </div>
+          </label>
           <button id="loginSubmit" type="submit" class="primary-btn auth-submit">Entrar</button>
         </form>
         <div class="auth-secondary">
@@ -205,9 +209,25 @@
       <section id="panelReset" class="auth-panel" hidden>
         <h2>Elige tu nueva contraseña</h2>
         <form id="resetForm" autocomplete="on" novalidate>
-          <label class="field field-wide">Nueva contraseña<input id="resetPassword" type="password" required autocomplete="new-password" minlength="12" /></label>
-          <label class="field field-wide">Repite la contraseña<input id="resetPassword2" type="password" required autocomplete="new-password" minlength="12" /></label>
-          <p class="auth-hint">Mínimo 12 caracteres, con mayúsculas, minúsculas, números y símbolos.</p>
+          <label class="field field-wide">Nueva contraseña
+            <div class="password-wrap">
+              <input id="resetPassword" type="password" required autocomplete="new-password" minlength="11" />
+              <button type="button" class="pw-toggle" data-pw-target="resetPassword" aria-label="Mostrar contraseña">
+                <svg class="pw-eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="pw-eye-off" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a19.4 19.4 0 0 1 4.06-5.06M9.9 4.24A10.8 10.8 0 0 1 12 4c7 0 11 7 11 7a19.7 19.7 0 0 1-2.16 3.19M14.12 14.12A3 3 0 1 1 9.88 9.88M1 1l22 22"/></svg>
+              </button>
+            </div>
+          </label>
+          <label class="field field-wide">Repite la contraseña
+            <div class="password-wrap">
+              <input id="resetPassword2" type="password" required autocomplete="new-password" minlength="11" />
+              <button type="button" class="pw-toggle" data-pw-target="resetPassword2" aria-label="Mostrar contraseña">
+                <svg class="pw-eye" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                <svg class="pw-eye-off" viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7a19.4 19.4 0 0 1 4.06-5.06M9.9 4.24A10.8 10.8 0 0 1 12 4c7 0 11 7 11 7a19.7 19.7 0 0 1-2.16 3.19M14.12 14.12A3 3 0 1 1 9.88 9.88M1 1l22 22"/></svg>
+              </button>
+            </div>
+          </label>
+          <p class="auth-hint">Mínimo 11 caracteres, con mayúsculas, minúsculas, números y símbolos.</p>
           <button id="resetSubmit" type="submit" class="primary-btn auth-submit">Guardar contraseña</button>
         </form>
       </section>
@@ -218,7 +238,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="supabase.js?v=20260919-2"></script>
-  <script src="auth.js?v=20260919-4"></script>
+  <script src="auth.js?v=20260919-5"></script>
   <script src="app.js?v=20260919-supabase1"></script>
   <script src="mobile-nav.js?v=20260919-1"></script>
   <script src="sw-register.js?v=20260919-2"></script>

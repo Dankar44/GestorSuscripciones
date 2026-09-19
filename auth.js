@@ -21,6 +21,18 @@
  tabsWrap?.addEventListener('click',e=>{const t=e.target.closest('.auth-tab');if(t)showTab(t.dataset.tab)});
  document.addEventListener('click',e=>{const jump=e.target.closest('[data-tab-jump]');if(jump)showTab(jump.dataset.tabJump)});
  forgotBtn?.addEventListener('click',()=>showTab('recovery'));
+
+ document.addEventListener('click',e=>{
+  const btn=e.target.closest('.pw-toggle');
+  if(!btn)return;
+  const input=document.getElementById(btn.dataset.pwTarget);
+  if(!input)return;
+  const showing=input.type==='text';
+  input.type=showing?'password':'text';
+  btn.setAttribute('aria-label',showing?'Mostrar contraseña':'Ocultar contraseña');
+  btn.querySelector('.pw-eye').hidden=!showing;
+  btn.querySelector('.pw-eye-off').hidden=showing;
+ });
  magicBtn?.addEventListener('click',async()=>{const email=document.getElementById('loginEmail').value.trim();if(!email)return setMsg('Escribe tu email arriba para pedir el enlace','err');await withBusy(magicBtn,'Enviando…',async()=>{await window.db.sendMagicLink(email);setMsg('Si existe una cuenta con '+email+', te llegará un enlace para entrar sin contraseña.','ok')})});
 
  async function withBusy(btn,label,fn){const prev=btn.textContent;btn.disabled=true;btn.textContent=label;try{await fn()}catch(err){setMsg(prettyError(err),'err')}finally{btn.disabled=false;btn.textContent=prev}}

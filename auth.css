@@ -19,6 +19,12 @@
 .auth-panel .field input{border-radius:12px;border:1px solid rgba(120,120,140,.25);padding:12px 14px;font-size:15px;background:var(--panel,#fff);color:inherit;font-family:inherit;-webkit-appearance:none;appearance:none}
 .auth-panel .field input:focus{outline:2px solid #7b5cff;outline-offset:1px;border-color:transparent}
 [data-theme="dark"] .auth-panel .field input{background:#252c3d;border-color:rgba(255,255,255,.1)}
+.password-wrap{position:relative;display:block}
+.password-wrap input{width:100%;padding-right:48px;box-sizing:border-box}
+.pw-toggle{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;background:transparent;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:inherit;opacity:.55;padding:0}
+.pw-toggle:hover{opacity:1;background:rgba(120,120,140,.12)}
+[data-theme="dark"] .pw-toggle:hover{background:rgba(255,255,255,.08)}
+.pw-toggle svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .auth-submit{width:100%;justify-content:center;margin-top:4px}
 .auth-hint{margin:-2px 0 0;font-size:12px;opacity:.65;line-height:1.5}
 .auth-msg{margin:2px 0 0;font-size:13px;min-height:18px;line-height:1.4}
