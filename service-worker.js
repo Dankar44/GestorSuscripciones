@@ -1,4 +1,4 @@
-const CACHE = 'suscripto-v8-wallet-fit';
+const CACHE = 'suscripto-v9-safearea';
 const ASSETS = [
   './',
   './index.html',
@@ -10,6 +10,7 @@ const ASSETS = [
   './auth.js',
   './supabase.js',
   './sw-register.js',
+  './no-zoom.js',
   './manifest.json',
   './icon-wallet.svg',
   './icon-192.png',
