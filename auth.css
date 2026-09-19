@@ -1,4 +1,7 @@
-.auth-overlay{position:fixed;inset:0;z-index:200;background:rgba(17,21,34,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;padding:24px;padding-top:max(24px,env(safe-area-inset-top));padding-bottom:max(24px,env(safe-area-inset-bottom));overflow:auto}
+.auth-overlay{position:fixed;inset:0;z-index:2147483000;background:#0b1020;display:flex;align-items:center;justify-content:center;padding:24px;padding-top:max(24px,env(safe-area-inset-top));padding-bottom:max(24px,env(safe-area-inset-bottom));overflow:auto;overscroll-behavior:contain;touch-action:pan-y}
+body.auth-locked .app-shell{visibility:hidden}
+body.auth-locked{background:#0b1020}
+html.auth-locked,html.auth-locked body{background:#0b1020}
 .auth-card{background:var(--panel,#fff);color:var(--text,#111522);width:100%;max-width:440px;border-radius:24px;padding:28px 26px;box-shadow:0 30px 80px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:14px}
 [data-theme="dark"] .auth-card{background:#1a1f2e;color:#f4f6fb}
 .auth-brand{display:flex;align-items:center;gap:12px}

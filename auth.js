@@ -8,7 +8,12 @@
  const magicBtn=document.getElementById('magicLinkBtn');
 
  const setMsg=(text='',kind='')=>{msg.textContent=text;msg.className='auth-msg'+(kind?' '+kind:'')};
- const showOverlay=v=>{overlay.hidden=!v;document.body.style.overflow=v?'hidden':''};
+ const showOverlay=v=>{
+  overlay.hidden=!v;
+  document.body.style.overflow=v?'hidden':'';
+  document.body.classList.toggle('auth-locked',v);
+  document.documentElement.classList.toggle('auth-locked',v);
+ };
 
  function showTab(name){
   Object.entries(panels).forEach(([k,el])=>{if(el)el.hidden=k!==name});
